@@ -1,0 +1,30 @@
+body {
+  font-family: "Honk", system-ui;
+  font-size: 2em;
+  /* each shadow line adds a layer of white glow at different levels*/
+  text-shadow: -3px 0px 10px #fff, 3px 0px 10px #fff, 0px 0px 10px #fff,
+    -3px -3px 10px #fff, 3px -3px 10px #fff, 0px -3px 10px #fff;
+  text-align: center;
+  background: url("./riceBg.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.start-button {
+  display: inline-block;
+  background: none;
+  width: 300px;
+  height: 120px;
+  font-size: 50px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  color: solid black;
+  text-shadow: -3px 0px 10px #4fe629, 3px 0px 10px #4fe629, 0px 0px 10px #4fe629,
+    -3px -3px 10px #4fe629, 3px -3px 10px #fff, 0px -3px 10px #fff,
+    3px 3px 10px #fff;
+  text-align: center;
+  background: url("./riceGrains.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
