@@ -1,0 +1,73 @@
+body {
+  margin: 0;
+  font-family: Helvetica;
+  /* background-color: black; */
+}
+
+#main-grid {
+  margin: 0;
+  display: grid;
+  width: 1100px;
+  grid-template-columns: repeat(11, 100px);
+  grid-template-rows: repeat (7, 100px);
+}
+
+/* #main-grid div {
+  width: 100px;
+  height: 100px;
+  background-color: grey;
+} */
+
+.lives {
+  margin: auto;
+  display: grid;
+  grid-row: 1 / 2;
+  grid-column: 2 /6;
+  width: 400px;
+  height: 100px;
+  background-color: lavender;
+  font-size: 40px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.base {
+  margin: auto;
+  display: grid;
+  grid-row: 2 / 3;
+  grid-column: 3 /10;
+  width: 700px;
+  height: 100px;
+  background-color: blue;
+  grid-template-columns: repeat(7, 100px);
+}
+
+.ci {
+  margin: auto;
+  display: grid;
+  grid-row: 3 / 6;
+  grid-column: 4 /8;
+  width: 400px;
+  height: 300px;
+  background-color: crimson;
+}
+
+.creation {
+  margin: auto;
+  display: grid;
+  grid-row: 6 / 7;
+  grid-column: 3 /10;
+  width: 700px;
+  height: 100px;
+  grid-template-columns: repeat(7, 100px);
+}
+
+.game-hint {
+  margin: auto;
+  display: grid;
+  grid-row: 7 / 8;
+  grid-column: 3 /10;
+  width: 700px;
+  height: 100px;
+  background-color: green;
+  grid-template-columns: repeat(7, 100px);
+}
