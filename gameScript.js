@@ -1,80 +1,17 @@
-// // Player class with win or lose criteria
-
-// class Player {
-//   // construction of player with name and default lives at 3
-//   constructor(name, lives = 3) {
-//     this.name = name;
-//     this.lives = lives;
-//   }
-
-//   getKVP() {
-//     return { name: this.name, lives: this.lives };
-//   }
-
-//   // Life reduction situation when criteria is not met
-//   lifeReduction(criteria) {
-//     if (criteria !== true) {
-//       lives--;
-//     }
-//   }
-
-//   // Win criteria
-//   winCriteria(finalProduct) {
-//     if (finalProduct === true) {
-//       console.log("You have completed the final product! You won!");
-//     }
-//   }
-
-//   // Lose criteria
-//   loseCriteria(lives) {
-//     if (lives === 0) {
-//       console.log(
-//         "You lost because you ran out of lives! Try again next time!"
-//       );
-//     }
-//   }
-// }
-
-// const newPlayer = new Player("CP");
-// console.log(newPlayer.getKVP());
-
 // Fixed parameters not to be touched
 // Array of base items
 const base = [
   "Chicken",
-  "Rice-grain",
+  "Rice-Grain",
   "Water",
   "Duck",
-  "Mixed-vegetables",
-  "Roasted-pork",
+  "Mixed-Vegetables",
+  "Roasted-Pork",
   "Egg",
 ];
 
 // Fixed Parameters not to be touched
-// KVP of completedItems
-
-// const completedItem = {
-//   porridge: ["cookedRice", "Water"],
-//   cookedRice: ["riceGrain", "Water"],
-//   boiledEgg: ["Egg", "Water"],
-//   duckRice: ["Duck", "cookedRice"],
-//   chickenRice: ["Chicken", "cookedRice"],
-//   roastedPorkRice: ["Roasted-pork", "cookedRice"],
-//   mixedVegetableRice: ["Mixed-vegetables", "cookedRice"],
-//   eggPorridge: ["porridge", "Egg"],
-//   chickenPorridge: ["Chicken", "porridge"],
-//   duckPorridge: ["Duck", "porridge"],
-//   vegetablePorridge: ["Mixed-vegetables", "porridge"],
-//   roastedPorkChickenRice: [
-//     "roastedPorkRice",
-//     "chickenRice",
-//     "Roasted-pork",
-//     "Chicken",
-//   ],
-// };
-
-// fixed array of completed items
-
+// Array of cooked items
 const cooked = [
   "Cooked-Rice",
   "Porridge",
@@ -90,86 +27,86 @@ const cooked = [
   "Roasted-Pork-Chicken-Rice",
 ];
 
+// a is a variable for ingredient 1
+let a;
+// b is a variable for ingredient 2
+let b;
+// c is a variable for created item in creation bar
+let c;
+// d is a variable for created item if it is successful and append to the completed item
+let d;
+// num is a counter for process() function
+let num = 0;
+// array is an empty array to check the availability of the item
+let array = [];
+// Setting lives at 3 by default
+let lives = 3;
+
 window.onload = function () {
   setGame();
 };
 
 function setGame() {
-  // set up the lives for the game in html
-  let lifeCounter = document.querySelector(".lives");
-  lifeCounter.style.color = "black";
-  lifeCounter.innerText = "Your life count is at 3";
-  lifeCounter.style.textAlign = "center";
-  lifeCounter.style.alignContent = "center";
+  // // set up the lives for the game in html
+  // let lifeCounter = document.querySelector(".lives");
+  // lifeCounter.style.color = "black";
+  // lifeCounter.innerText = "Your life count is at 3";
+  // lifeCounter.style.textAlign = "center";
+  // lifeCounter.style.alignContent = "center";
 }
 
-// setting invalid = false; and lives at 3
-let invalid = false;
-let lives = 3;
-// Life function
-function livez() {
-  if (invalid === true) {
-    lives--;
-  }
+// Life deduct function
+function lifeDeduct() {
+  lives--;
+  console.log("your life is deducted. your life is now at  " + lives);
+  lifeChecker();
+  lives;
 }
-let certainItem = "";
-function checkFood() {
-  if (
-    certainItem === completedItem.porridge.includes("cookedRice" && "Water")
-  ) {
-  } else if (
-    certainItem === completedItem.cookedRice.includes("riceGrain" && "Water")
-  ) {
-  } else if (
-    certainItem === completedItem.boiledEgg.includes("Egg" && "Water")
-  ) {
-  } else if (
-    certainItem === completedItem.duckRice.includes("Duck" && "cookedRice")
-  ) {
-  } else if (
-    certainItem ===
-    completedItem.chickenRice.includes("Chicken" && "cookedRice")
-  ) {
-  } else if (
-    certainItem ===
-    completedItem.roastedPorkRice.includes("Roasted-pork" && "cookedRice")
-  ) {
-  } else if (
-    certainItem ===
-    completedItem.mixedVegetableRice.includes(
-      "Mixed-vegetables" && "cookedRice"
-    )
-  ) {
-  } else if (
-    certainItem === completedItem.eggPorridge.includes("Egg" && "porridge")
-  ) {
-  } else if (
-    certainItem ===
-    completedItem.chickenPorridge.includes("Chicken" && "porridge")
-  ) {
-  } else if (
-    certainItem === completedItem.duckPorridge.includes("Duck" && "porridge")
-  ) {
-  } else if (
-    certainItem ===
-    completedItem.vegetablePorridge.includes("Mixed-vegetables" && "porridge")
-  ) {
-  } else if (
-    certainItem ===
-    completedItem.roastedPorkChickenRice.includes(
-      ("roastedPorkRice" && "Chicken") || ("chickenRice" && "Roasted-pork")
-    )
-  ) {
-  } else {
-    invalid = true;
+
+// Life checking Function
+function lifeChecker() {
+  if (lives === 0) {
+    console.log("you have lost!");
   }
 }
 
-// let a = document.getElementById("creationSetter1");
-// let b = document.getElementById("creationSetter3");
-let a;
-let b;
+// Life display
 
+function lifeDisplay() {
+  let livesContainer = document.querySelector(".lives");
+  // set up the lives available:
+  for (let i = 0; i < 4; i++) {
+    // creating individual divs
+    let livesSetter = document.createElement("div");
+    livesSetter.id = "livesSetter" + i; // Assign a unique id for each livesSetter
+    // Styling the lives
+    livesSetter.style.borderColor = "black";
+    livesSetter.style.borderWidth = "4px";
+    livesSetter.style.borderStyle = "solid";
+    livesSetter.style.gap = "1px";
+    livesSetter.style.display = "flex";
+    livesSetter.style.textAlign = "center";
+    livesSetter.style.justifyContent = "center";
+    livesSetter.style.alignItems = "center";
+    livesSetter.style.color = "black";
+    livesSetter.style.display = "flex";
+    livesSetter.style.justifyContent = "center";
+    livesSetter.style.position = "relative";
+    if (i !== 0) {
+      livesSetter.style.backgroundImage = "url('./Fullheart.png')"; // Set the background image
+      livesSetter.style.backgroundSize = "cover"; // cover background}
+    } else {
+      livesSetter.innerText = "Your current lives";
+      livesSetter.style.height = "90px";
+      livesSetter.style.fontSize = "1.5rem";
+    }
+    // Append the livesSetter to the livesContainer
+    livesContainer.appendChild(livesSetter);
+  }
+}
+lifeDisplay();
+
+// function to set the base items
 function putBase() {
   let baseContainer = document.querySelector(".base");
   for (let i = 0; i < base.length; i++) {
@@ -220,8 +157,8 @@ function completeI() {
     compISetter.style.justifyContent = "center";
     compISetter.style.alignItems = "center";
     compISetter.style.color = "black";
-    compISetter.addEventListener("click", function (evt) {
-      console.log(i);
+    compISetter.addEventListener("click", function (event) {
+      compIAsIngredient(event);
     });
     compIContainer.appendChild(compISetter);
   }
@@ -264,7 +201,7 @@ function creation() {
       creationSetter.style.backgroundImage = "url('./wok.jpg')"; // Set the background image
       creationSetter.style.backgroundSize = "cover"; // cover background
       creationSetter.addEventListener("click", function () {
-        process(c);
+        process();
       });
     } else if (i === 2) {
       creationSetter.style.backgroundImage = "url('./plus.jpg')";
@@ -301,44 +238,156 @@ function gameHint() {
   ghContainer.appendChild(ghSetter);
 }
 
-// Function to be invoked when creationSetter is clicked
-function testFunction2(creationValue) {
-  console.log("Clicked creationSetter with value: " + creationValue);
-}
-
 creation();
 gameHint();
 
-function testFunction3() {
-  console.log("final product");
-}
-
-let c;
-let d;
-
 function process() {
-  let c = document.getElementById("creationSetter5");
+  // getting the id to set the product to append
+  c = document.getElementById("creationSetter5");
   c.style.color = "white";
+  // getting the id to set the completed item to append
+  d = document.getElementById("compISetter" + num);
+  d.style.color = "white";
+
   switch (true) {
     // checking for Rice-grain & Water
     case (a.innerText === base[1] && b.innerText === base[2]) ||
-      (a.innerText === base[2] && a.innerText === base[1]):
+      (b.innerText === base[1] && a.innerText === base[2]):
       c.innerText = cooked[0];
-      resetRecipe();
-      //setting time out before clearing the innertext of the product box
-      setTimeout(resetProduct(), 2500);
+      if (array.includes(cooked[0]) === false) {
+        // checking array to see if it exists inside, if it does not, it will push the item into the array
+        num++; //increment of process for num
+        array.push(cooked[0]);
+        d.innerText = cooked[0];
+      }
+      break;
+    // Checking for Cooked-Rice & Chicken
+    case (a.innerText === base[0] && b.innerText === cooked[0]) ||
+      (b.innerText === base[0] && a.innerText === cooked[0]):
+      c.innerText = cooked[4];
+      if (array.includes(cooked[4]) !== true) {
+        num++;
+        array.push(cooked[4]);
+        d.innerText = cooked[4];
+      }
+      break;
+    // Checking for Cooked-Rice & Water
+    case (a.innerText === base[2] && b.innerText === cooked[0]) ||
+      (b.innerText === base[2] && a.innerText === cooked[0]):
+      c.innerText = cooked[1];
+      if (array.includes(cooked[1]) !== true) {
+        num++;
+        array.push(cooked[1]);
+        d.innerText = cooked[1];
+      }
+      break;
+    // Checking for Egg & Water
+    case (a.innerText === base[2] && b.innerText === base[6]) ||
+      (b.innerText === base[2] && a.innerText === base[6]):
+      c.innerText = cooked[2];
+      if (array.includes(cooked[2]) !== true) {
+        num++;
+        array.push(cooked[2]);
+        d.innerText = cooked[2];
+      }
+      break;
+    // Checking for Duck & Cooked Rice
+    case (a.innerText === base[3] && b.innerText === cooked[0]) ||
+      (b.innerText === base[3] && a.innerText === cooked[0]):
+      c.innerText = cooked[3];
+      if (array.includes(cooked[3]) !== true) {
+        num++;
+        array.push(cooked[3]);
+        d.innerText = cooked[3];
+      }
+      break;
+    // Checking for Roasted-Pork & Cooked Rice
+    case (a.innerText === base[5] && b.innerText === cooked[0]) ||
+      (b.innerText === base[5] && a.innerText === cooked[0]):
+      c.innerText = cooked[5];
+      if (array.includes(cooked[5]) !== true) {
+        num++;
+        array.push(cooked[5]);
+        d.innerText = cooked[5];
+      }
+      break;
+    // Checking for Mixed-Vegetables & Cooked Rice
+    case (a.innerText === base[4] && b.innerText === cooked[0]) ||
+      (b.innerText === base[4] && a.innerText === cooked[0]):
+      c.innerText = cooked[6];
+      if (array.includes(cooked[6]) !== true) {
+        num++;
+        array.push(cooked[6]);
+        d.innerText = cooked[6];
+      }
+      break;
+    // Checking for Egg & Porridge
+    case (a.innerText === base[6] && b.innerText === cooked[1]) ||
+      (b.innerText === base[6] && a.innerText === cooked[1]):
+      c.innerText = cooked[7];
+      if (array.includes(cooked[7]) !== true) {
+        num++;
+        array.push(cooked[7]);
+        d.innerText = cooked[7];
+      }
+      break;
+    // Checking for Chicken & Porridge
+    case (a.innerText === base[0] && b.innerText === cooked[1]) ||
+      (b.innerText === base[0] && a.innerText === cooked[1]):
+      c.innerText = cooked[8];
+      if (array.includes(cooked[8]) !== true) {
+        num++;
+        array.push(cooked[8]);
+        d.innerText = cooked[8];
+      }
+      break;
+    // Checking for Duck & Porridge
+    case (a.innerText === base[3] && b.innerText === cooked[1]) ||
+      (b.innerText === base[3] && a.innerText === cooked[1]):
+      c.innerText = cooked[9];
+      if (array.includes(cooked[9]) !== true) {
+        num++;
+        array.push(cooked[9]);
+        d.innerText = cooked[9];
+      }
+      break;
+    // Checking for Mixed-Vegetables & Porridge
+    case (a.innerText === base[4] && b.innerText === cooked[1]) ||
+      (b.innerText === base[4] && a.innerText === cooked[1]):
+      c.innerText = cooked[10];
+      if (array.includes(cooked[10]) !== true) {
+        num++;
+        array.push(cooked[10]);
+        d.innerText = cooked[10];
+      }
+      break;
+    // Checking for Roasted-Pork-Rice & Chicken || Chicken-Rice & Roasted-Pork
+    // Chicken & roasted-pork-rice
+    case (a.innerText === base[0] && b.innerText === cooked[5]) ||
+      (b.innerText === base[0] && a.innerText === cooked[5]) ||
+      // Roasted-Pork & Chicken-rice
+      (a.innerText === base[5] && b.innerText === cooked[4]) ||
+      (b.innerText === base[5] && a.innerText === cooked[4]):
+      c.innerText = cooked[11];
+      if (array.includes(cooked[11]) !== true) {
+        num++;
+        array.push(cooked[11]);
+        d.innerText = cooked[11];
+      }
+      break;
 
-      break;
-    // Checking for cookedRice & Chicken
-    case a.innerText === base:
-      a.innerText === base[0];
-      break;
     default:
       // Default case if none of the conditions match
-      resetRecipe();
-      console.log("Invalid!");
+
+      c.innerText = "Invalid Process!";
+      // life deduct gets invoked here
+      lifeDeduct();
       break;
   }
+  // setting time out before clearing the innertext of the product box
+  setTimeout(resetProduct, 3000);
+  // Resetting recipe
+  resetRecipe();
 }
 
 function resetRecipe() {
@@ -353,5 +402,18 @@ function resetProduct() {
   // function that erases the innerText when invoked by process button
   if (typeof c.innerText === "string") {
     c.innerText = "";
+  }
+}
+
+function compIAsIngredient(event) {
+  // function that invokes into the recipe area
+  // if a.innerText is not inside, it will put the innerText inside
+  if (!a.innerText) {
+    a.innerText = event.target.innerText;
+    a.style.color = "white";
+  } else if (!b.innerText) {
+    // since a has already been filled. b will be filled.
+    b.innerText = event.target.innerText;
+    b.style.color = "white";
   }
 }
