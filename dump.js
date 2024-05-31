@@ -114,3 +114,15 @@ function checkFood() {
 
 // const newPlayer = new Player("CP");
 // console.log(newPlayer.getKVP());
+
+
+switch (true) {
+  case (p.innerText === "Please select item 1") :
+    p.innerText = "Please select item 2";
+    break;
+    case (p.innerText === "Please select item 2") :
+      p.innerText = "Please process the 2 items";
+      break;
+      default:
+        break;
+}
