@@ -691,7 +691,6 @@ function resetGame() {
 
 // Invoking win screen
 function invokeWin() {
-  addHighScore();
   w = document.querySelector(".gameHint");
   w.style.textAlign = "center";
   w.style.display = "flex";
@@ -711,8 +710,4 @@ function invokeWin() {
   playAudio1();
   stopTimer();
   resetGame();
-}
-
-function addHighScore() {
-  let score = time;
 }
