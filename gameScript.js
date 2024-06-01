@@ -45,9 +45,6 @@ function shuffleArray(array) {
 // Create a shallow copy of the original array
 const randomizedArray = [...cooked];
 
-// Shuffle the copy see in gh code lines
-// shuffleArray(randomizedArray);
-
 // a is a variable for ingredient 1
 let a;
 // b is a variable for ingredient 2
@@ -64,8 +61,6 @@ let n;
 let p;
 // w is a variable for win condition
 let w;
-// lost variable for losing criteria
-let lost;
 // time is a variable for countdown timer maninpulation
 let time = 30;
 // r is for reset game manipulation variable
@@ -171,7 +166,7 @@ function lifeDeduct() {
 function lifeChecker() {
   if (lives === 0) {
     stopTimer();
-    // Setting you have lost text
+    // Setting the you have lost text
     ghContainer.innerText = "You have lost!";
     ghContainer.style.textAlign = "center";
     ghContainer.style.display = "flex";
@@ -195,10 +190,6 @@ function lifeDisplay() {
     let livesSetter = document.createElement("div");
     livesSetter.id = "livesSetter" + i; // Assign a unique id for each livesSetter
     // Styling the lives
-    // livesSetter.style.borderColor = "black";
-    // livesSetter.style.borderWidth = "1px";
-    // livesSetter.style.borderStyle = "solid";
-    // livesSetter.style.gap = "1px";
     livesSetter.style.display = "flex";
     livesSetter.style.textAlign = "center";
     livesSetter.style.justifyContent = "center";
@@ -279,9 +270,6 @@ function prompt() {
   let promptContainer = document.querySelector(".prompt");
   let promptSetter = document.createElement("div");
   promptSetter.id = "promptSetter1";
-  // promptSetter.style.borderColor = "black";
-  // promptSetter.style.borderWidth = "1px";
-  // promptSetter.style.borderStyle = "solid";
   promptSetter.style.textAlign = "center";
   promptSetter.style.justifyContent = "center";
   promptSetter.style.alignItems = "center";
@@ -344,10 +332,8 @@ function completeI() {
   for (let i = 0; i < 12; i++) {
     let compISetter = document.createElement("div");
     compISetter.id = "compISetter" + i; // Assign a unique id for each baseSetter
-    // compISetter.style.borderColor = "black";
     compISetter.style.borderWidth = "1px";
     compISetter.style.borderStyle = "solid";
-    // compISetter.style.gap = "1px";
     compISetter.style.display = "flex";
     compISetter.style.textAlign = "center";
     compISetter.style.justifyContent = "center";
@@ -400,9 +386,7 @@ function creation() {
     creationSetter.style.position = "center";
     creationSetter.style.textShadow = "0 0 15px rgba(120, 120, 0, 0.6)";
     if (i !== 0) {
-      // creationSetter.style.borderColor = "black";
       creationSetter.style.borderWidth = "1px";
-      // creationSetter.style.gap = "1px";
       creationSetter.style.borderStyle = "solid";
     }
     if (i === 1 || i === 3) {
@@ -449,10 +433,6 @@ function gameHint() {
   shuffleArray(randomizedArray);
   let ghSetter = document.createElement("div");
   ghSetter.id = "gh";
-  // ghSetter.style.borderColor = "black";
-  // ghSetter.style.borderWidth = "1px";
-  // // ghSetter.style.gap = "1px";
-  // ghSetter.style.borderStyle = "solid";
   ghSetter.style.textAlign = "left";
   ghSetter.style.display = "flex";
   ghSetter.style.alignItems = "center";
@@ -701,7 +681,7 @@ function resetGame() {
       resetGameSetter.style.fontSize = "20px";
       resetGameSetter.style.textShadow = "0 0 15px rgba(120, 120, 0, 0.6)";
       resetGameSetter.addEventListener("click", function () {
-        // Cheat way of resetting the game, refreshing the screen. I gave up.
+        // Cheat way of resetting the game, refreshing the screen.
         location.reload();
       });
       r.appendChild(resetGameSetter);
