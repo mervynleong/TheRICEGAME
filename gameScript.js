@@ -64,8 +64,12 @@ let n;
 let p;
 // w is a variable for win condition
 let w;
+// lost variable for losing criteria
+let lost;
 // time is a variable for countdown timer maninpulation
 let time = 30;
+// r is for reset game manipulation variable
+let r;
 // timeDisplay is a variable set to null for timer function
 let timeDisplay = null;
 // num is a counter for process() function
@@ -74,12 +78,54 @@ let num = 0;
 let array = [];
 // Setting lives at 3 by default
 let lives = 3;
+// inserting audio element
+var audio = document.getElementById("gordon");
+var audio1 = document.getElementById("completion");
+var audio2 = document.getElementById("click");
 
 window.onload = function () {
-  setGame();
+  // setting all the functions into the game
+  lifeDisplay();
+  putTimer();
+  beginTimer();
+  prompt();
+  putBase();
+  completeI();
+  creation();
+  gameHint();
 };
 
-function setGame() {}
+//Play audio2
+function playAudio2() {
+  audio2.play();
+  // setting the audio to beginning to reset
+  audio2.currentTime = 0;
+}
+
+//Pause audio2
+function pauseAudio2() {
+  audio2.pause();
+}
+
+//Play audio1
+function playAudio1() {
+  audio1.play();
+}
+
+//Pause audio1
+function pauseAudio1() {
+  audio1.pause();
+}
+
+// Play the audio
+function playAudio() {
+  audio.play();
+}
+
+// Pause the audio
+function pauseAudio() {
+  audio.pause();
+}
 
 // Life deduct function
 function lifeDeduct() {
@@ -93,6 +139,8 @@ function lifeDeduct() {
 
   if (lives > 0) {
     lives--;
+    // Inserting sound to play:
+    playAudio();
   }
   switch (true) {
     case lives === 2:
@@ -122,8 +170,18 @@ function lifeDeduct() {
 // Life checking Function
 function lifeChecker() {
   if (lives === 0) {
-    console.log("you have lost!");
     stopTimer();
+    // Setting you have lost text
+    ghContainer.innerText = "You have lost!";
+    ghContainer.style.textAlign = "center";
+    ghContainer.style.display = "flex";
+    ghContainer.style.alignItems = "center";
+    ghContainer.style.color = "darkgreen";
+    ghContainer.style.fontSize = "30px";
+    ghContainer.style.width = "700px";
+    ghContainer.style.height = "100px";
+    ghContainer.style.textShadow = "0 0 5px rgba(0, 100, 100, 0.4)";
+    ghContainer.style.justifyContent = "center";
   }
 }
 
@@ -164,7 +222,6 @@ function lifeDisplay() {
     livesContainer.appendChild(livesSetter);
   }
 }
-lifeDisplay();
 
 // function for stopping timer
 
@@ -181,9 +238,7 @@ function resetTimer() {
 function beginTimer() {
   timeDisplay = setInterval(() => {
     putTimer();
-    console.log("interval running");
   }, 1000);
-  console.log("time starts");
 }
 function putTimer() {
   // document select timerScreen
@@ -219,9 +274,6 @@ function putTimer() {
   timerScreenContainer.appendChild(timerScreenSetter);
 }
 
-putTimer();
-beginTimer();
-
 // function to set the prompt
 function prompt() {
   let promptContainer = document.querySelector(".prompt");
@@ -243,8 +295,6 @@ function prompt() {
   promptSetter.style.textShadow = "0 0 10px rgba(255, 0, 0, 0.4)";
   promptContainer.appendChild(promptSetter);
 }
-
-prompt();
 
 // function to set the base items
 function putBase() {
@@ -271,6 +321,8 @@ function putBase() {
       // listen to evt evt.target.textcontent...
       // if a.innerText is not inside, it will put the innerText inside
       // doing the prompt here:
+      // playing audio of click
+      playAudio2();
       p = document.getElementById("promptSetter1");
       if (!a.innerText) {
         a.innerText = evt.target.innerText;
@@ -286,10 +338,9 @@ function putBase() {
   }
 }
 
-putBase();
-
+// declaring the container outside to be used later as well
+let compIContainer = document.querySelector(".ci");
 function completeI() {
-  let compIContainer = document.querySelector(".ci");
   for (let i = 0; i < 12; i++) {
     let compISetter = document.createElement("div");
     compISetter.id = "compISetter" + i; // Assign a unique id for each baseSetter
@@ -303,7 +354,21 @@ function completeI() {
     compISetter.style.alignItems = "center";
     compISetter.style.color = "violet";
     compISetter.style.textShadow = "0 0 10px rgba(200, 0, 255, 0.5)";
+    compISetter.addEventListener("mouseover", function () {
+      // Apply styles when hovering
+      compISetter.style.backgroundColor = "beige";
+      compISetter.style.cursor = "pointer";
+    });
+
+    // Add event listener for mouseout (hover out)
+    compISetter.addEventListener("mouseout", function () {
+      // Reset styles when not hovering
+      compISetter.style.backgroundColor = ""; // Reset to default background color
+      compISetter.style.cursor = ""; // Reset cursor to default
+    });
     compISetter.addEventListener("click", function (event) {
+      // adding audio
+      playAudio2();
       // completing the prompt here
       p = document.getElementById("promptSetter1");
       switch (true) {
@@ -321,7 +386,6 @@ function completeI() {
     compIContainer.appendChild(compISetter);
   }
 }
-completeI();
 
 function creation() {
   let creationContainer = document.querySelector(".creation");
@@ -333,6 +397,7 @@ function creation() {
     creationSetter.style.textAlign = "center";
     creationSetter.style.justifyContent = "center";
     creationSetter.style.alignItems = "center";
+    creationSetter.style.position = "center";
     creationSetter.style.textShadow = "0 0 15px rgba(120, 120, 0, 0.6)";
     if (i !== 0) {
       // creationSetter.style.borderColor = "black";
@@ -346,11 +411,8 @@ function creation() {
       } else if (i === 3) {
         b = creationSetter;
       }
-      creationSetter.style.backgroundColor = "white";
     } else if (i === 5) {
-      creationSetter.style.backgroundColor = "white";
     } else if (i === 6) {
-      creationSetter.style.backgroundColor = "white";
       creationSetter.innerText = "Process";
       creationSetter.style.display = "flex";
       creationSetter.style.justifyContent = "center";
@@ -361,26 +423,30 @@ function creation() {
       creationSetter.style.backgroundImage = "url('./wok.jpg')"; // Set the background image
       creationSetter.style.backgroundSize = "cover"; // cover background
       creationSetter.addEventListener("click", function () {
+        // adding audio and invoking process function
+        playAudio2();
         process();
       });
     } else if (i === 2) {
-      creationSetter.style.backgroundImage = "url('./plus.jpg')";
-      creationSetter.style.backgroundSize = "cover";
+      // Plus Sign
+      creationSetter.innerText = "+";
+      creationSetter.style.fontSize = "90px";
+      creationSetter.style.color = "green";
     } else if (i === 4) {
-      creationSetter.style.backgroundImage = "url('./equal.png')";
-      creationSetter.style.backgroundSize = "cover";
-      creationSetter.style.backgroundRepeat = "no-repeat";
-      creationSetter.style.backgroundSize = "80px 80px";
-      creationSetter.style.backgroundPosition = "center";
+      // Equals Sign
+      creationSetter.innerText = "=";
+      creationSetter.style.fontSize = "90px";
+      creationSetter.style.color = "green";
     }
     // Append the creationSetter to the creationContainer
     creationContainer.appendChild(creationSetter);
   }
 }
 
+// declaring the container outside to be used later as well;
+let ghContainer = document.querySelector(".gameHint");
 function gameHint() {
   shuffleArray(randomizedArray);
-  let ghContainer = document.querySelector(".gameHint");
   let ghSetter = document.createElement("div");
   ghSetter.id = "gh";
   // ghSetter.style.borderColor = "black";
@@ -392,7 +458,7 @@ function gameHint() {
   ghSetter.style.alignItems = "center";
   ghSetter.style.justifyContent = "flex-start"; // Start from the left
   ghSetter.style.color = "darkgreen";
-  ghSetter.innerText = `Please make the following item: ${randomizedArray[0]}`;
+  ghSetter.innerText = `For instant win, please make the following item: ${randomizedArray[0]}`;
   ghSetter.style.fontSize = "30px";
   ghSetter.style.width = "700px";
   ghSetter.style.height = "100px";
@@ -400,9 +466,6 @@ function gameHint() {
   ghContainer.appendChild(ghSetter);
   return randomizedArray;
 }
-
-creation();
-gameHint();
 
 function process() {
   // getting the id to set the product to append
@@ -622,12 +685,33 @@ function compIAsIngredient(event) {
   }
 }
 
+// function that allows you to reset the game
 function resetGame() {
-  // function that allows you to reset the game
+  r = document.querySelector(".restart");
+  for (let i = 0; i < 2; i++) {
+    if (i === 1) {
+      let resetGameSetter = document.createElement("button");
+      resetGameSetter.textContent = "Restart Game?";
+      resetGameSetter.id = "resetGameSetter" + i;
+      resetGameSetter.style.display = "flex";
+      resetGameSetter.style.textAlign = "center";
+      resetGameSetter.style.justifyContent = "center";
+      resetGameSetter.style.alignItems = "center";
+      resetGameSetter.style.color = "blue";
+      resetGameSetter.style.fontSize = "20px";
+      resetGameSetter.style.textShadow = "0 0 15px rgba(120, 120, 0, 0.6)";
+      resetGameSetter.addEventListener("click", function () {
+        // Cheat way of resetting the game, refreshing the screen. I gave up.
+        location.reload();
+      });
+      r.appendChild(resetGameSetter);
+    }
+  }
 }
 
 // Invoking win screen
 function invokeWin() {
+  addHighScore();
   w = document.querySelector(".gameHint");
   w.style.textAlign = "center";
   w.style.display = "flex";
@@ -638,6 +722,17 @@ function invokeWin() {
   w.style.width = "700px";
   w.style.height = "100px";
   w.style.textShadow = "0 0 5px rgba(0, 100, 100, 0.4)";
-  w.innerText = "You won!";
+  // assigning random points based on time and multiplying by 10
+  // and also deducting points based on lives
+  let points =
+    Math.floor(Math.random() * 10) * time -
+    Math.floor(Math.random() * 5) * lives;
+  w.innerText = `You Won! You got: ${points} points`;
+  playAudio1();
+  stopTimer();
   resetGame();
+}
+
+function addHighScore() {
+  let score = time;
 }
