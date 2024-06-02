@@ -18,7 +18,7 @@ honk:
 https://fonts.google.com/specimen/Spicy+Rice?query=spicy+rice
 
 gordon ramsay sound:
-https://www.101soundboards.com/sounds/62327-what-a-fucking-donut#goog_rewarded
+https://www.101soundboards.com/sounds/62244-you-donkey#goog_rewarded
 
 pixel heart:
 https://yousx.itch.io/pixel-heart?download

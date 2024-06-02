@@ -74,9 +74,9 @@ let array = [];
 // Setting lives at 3 by default
 let lives = 3;
 // inserting audio element
-var audio = document.getElementById("gordon");
-var audio1 = document.getElementById("completion");
-var audio2 = document.getElementById("click");
+let audio = document.getElementById("gordon");
+let audio1 = document.getElementById("completion");
+let audio2 = document.getElementById("click");
 
 window.onload = function () {
   // setting all the functions into the game
@@ -166,6 +166,7 @@ function lifeDeduct() {
 function lifeChecker() {
   if (lives === 0) {
     stopTimer();
+    resetGame();
     // Setting the you have lost text
     ghContainer.innerText = "You have lost!";
     ghContainer.style.textAlign = "center";
@@ -703,9 +704,16 @@ function invokeWin() {
   w.style.textShadow = "0 0 5px rgba(0, 100, 100, 0.4)";
   // assigning random points based on time and multiplying by 10
   // and also deducting points based on lives
+  // for every lives lost
+  // initialising lifePointsDeduct to 0
+  let lifePointsDeduct = 0;
+  if (lives < 3) {
+    lifePointsDeduct = 3 - lives;
+  }
+
   let points =
     Math.floor(Math.random() * 10) * time -
-    Math.floor(Math.random() * 5) * lives;
+    Math.floor(Math.random() * 2) * lifePointsDeduct;
   w.innerText = `You Won! You got: ${points} points`;
   playAudio1();
   stopTimer();
