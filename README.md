@@ -1,7 +1,5 @@
 # gameProject1 for GA
 
-Deployed game link:
-
 Project of a "Doodle God" inspired game called "The Rice Game"
 This game takes inspiration from "Doodle God's" elements' of selecting 2 items and dragging them to each other and produce a by-product.
 Each by-product can mix with other by-products/ elements to be able to produce new by-products.
