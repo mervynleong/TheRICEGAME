@@ -5,6 +5,8 @@ This game takes inspiration from "Doodle God's" elements' of selecting 2 items a
 Each by-product can mix with other by-products/ elements to be able to produce new by-products.
 Doodle god may not have a win/lose condition as they only have a completion bar or checker per se.
 
+Deployed live at: https://mervynleong.github.io/The_Rice_Game/
+
 Link to video of how "Doodle God" game is like below:
 https://www.youtube.com/watch?v=noikl6ypI5c
 
