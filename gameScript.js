@@ -97,29 +97,14 @@ function playAudio2() {
   audio2.currentTime = 0;
 }
 
-//Pause audio2
-function pauseAudio2() {
-  audio2.pause();
-}
-
 //Play audio1
 function playAudio1() {
   audio1.play();
 }
 
-//Pause audio1
-function pauseAudio1() {
-  audio1.pause();
-}
-
 // Play the audio
 function playAudio() {
   audio.play();
-}
-
-// Pause the audio
-function pauseAudio() {
-  audio.pause();
 }
 
 // Life deduct function
